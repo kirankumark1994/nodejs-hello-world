@@ -5,24 +5,22 @@ pipeline {
     
   stages {
         
-    stage('Git') {
+    stage('Cloning Git') {
       steps {
-git branch: 'main', url: 'https://github.com/kirankumark1994/nodejs-hello-world.git'
+        https://github.com/kirankumark1994/nodejs-hello-world.git
+      }
+    }
+        
+    stage('Install dependencies') {
+      steps {
+        sh 'npm install'
       }
     }
      
-    stage('Build') {
-      steps {
-        sh 'npm install'
-         sh '<<Build Command>>'
-      }
-    }  
-    
-            
     stage('Test') {
       steps {
-        sh 'node test'
+         sh 'npm test'
       }
-    }
+    }      
   }
 }
