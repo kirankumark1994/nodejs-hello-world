@@ -1,26 +1,26 @@
 pipeline {
-  agent any
-    
-  tools {nodejs "node"}
-    
-  stages {
-        
-    stage('Cloning Git') {
-      steps {
-        https://github.com/kirankumark1994/nodejs-hello-world.git
-      }
-    }
-        
-    stage('Install dependencies') {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/kirankumark1994/nodejs-hello-world.git'
+            }
+        }
+        stage('Install dependencies') {
       steps {
         sh 'npm install'
       }
     }
-     
     stage('Test') {
       steps {
          sh 'npm test'
       }
-    }      
-  }
+    }     
+        stage('build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+    }
 }
